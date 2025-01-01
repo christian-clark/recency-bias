@@ -3,7 +3,7 @@ Code and instructions for replicating experiments from ["Linear Recency Bias Dur
 
 ## Pythia-based LM training
 
-These steps are based on the [slm\_surprisal](https://github.com/byungdoh/slm_surprisal/tree/main) repository.
+The steps for tranining Pythia-style LMs are based on the [slm\_surprisal](https://github.com/byungdoh/slm_surprisal/tree/main) repository.
 
 1. Clone the [GPT-NeoX](https://github.com/EleutherAI/gpt-neox) repository, and revert it to the commit that was used in this work:
 ```
@@ -23,7 +23,7 @@ np.memmap(data_prefix+".bin", dtype=np.uint16, mode="r", order="C", shape=(1000*
 
 5. Run the command `python deepy.py train_slms.py CONFIG_FILE` (e.g. `python deepy.py train_slms.py configs/pythia-2-4-256-1k.yml`) under the GPT-NeoX repository to launch LM training.
 Refer to the README of the GPT-NeoX repository for an explanation of each argument in the configuration.
-See also gpt-neox/slurm.sh for an example slurm script.
+See also gpt-neox/slurm.sh (in this repository) for an example slurm script.
 
 ## Surprisal estimation on psycholinguistic corpora
 
