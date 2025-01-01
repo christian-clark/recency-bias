@@ -9,7 +9,7 @@
   "num-attention-heads": 4,
   "seq-length": 2048,
   "max-position-embeddings": 2048,
-  "pos-emb": "devarda",
+  "pos-emb": "dVM",
   "no-weight-tying": true,
   "gpt-j-residual": true,
   "output-layer-parallelism": "column",
