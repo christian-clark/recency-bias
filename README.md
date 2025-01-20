@@ -1,6 +1,8 @@
 # recency-bias
 Code and instructions for replicating experiments from ["Linear Recency Bias During Training Improves Transformers’ Fit to Reading Times" (Clark et al., COLING 2025)](https://arxiv.org/abs/2409.11250).
 
+Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.
+
 ## Pythia-based LM training
 
 The steps for tranining Pythia-style LMs are based on the [slm\_surprisal](https://github.com/byungdoh/slm_surprisal/tree/main) repository.
