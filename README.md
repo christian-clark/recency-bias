@@ -1,7 +1,7 @@
 # recency-bias
-Code and instructions for replicating experiments from ["Linear Recency Bias During Training Improves Transformers’ Fit to Reading Times" (Clark et al., COLING 2025)](https://arxiv.org/abs/2409.11250).
+Code and instructions for replicating experiments from ["Linear Recency Bias During Training Improves Transformers’ Fit to Reading Times" (Clark et al., COLING 2025)](https://aclanthology.org/2025.coling-main.517/).
 
-Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.
+**Note: These instructions aren't yet complete. Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.**
 
 ## Pythia-based LM training
 
