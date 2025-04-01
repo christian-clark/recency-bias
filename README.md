@@ -1,7 +1,7 @@
 # recency-bias
 Code and instructions for replicating experiments from ["Linear Recency Bias During Training Improves Transformers’ Fit to Reading Times" (Clark et al., COLING 2025)](https://aclanthology.org/2025.coling-main.517/).
 
-**Note: These instructions aren't yet complete. Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.**
+Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.
 
 ## Pythia-based LM training
 
@@ -27,10 +27,30 @@ np.memmap(data_prefix+".bin", dtype=np.uint16, mode="r", order="C", shape=(1000*
 Refer to the README of the GPT-NeoX repository for an explanation of each argument in the configuration.
 See also gpt-neox/slurm.sh (in this repository) for an example slurm script.
 
+6. Convert the model to Hugging Face format.
+The `tools` directory has separate scripts to run depending on whether the LM uses no recency bias (i.e., vanilla Transformer), de Varda and Marelli (2024) bias, or ALiBi.
+Example commands:
+```
+ python tools/convert_sequential_to_hf.py --input_dir <ORIGINAL-LM-PATH>/global_step10000 --config_file configs/pythia-2-4-256-1k.yml --output_dir <HF-LM-PATH>/global_step10000
+ ```
+```
+ python tools/convert_sequential_to_hf_alibi.py --input_dir <ORIGINAL-LM-PATH>/global_step10000 --config_file configs/pythia-2-4-256-1k-alibi.yml --output_dir <HF-LM-PATH>/global_step10000
+ ```
+```
+ python tools/convert_sequential_to_hf_devarda.py --input_dir <ORIGINAL-LM-PATH>/global_step10000 --config_file configs/pythia-2-4-256-1k-dVM.yml --output_dir <HF-LM-PATH>/global_step10000
+ ```
+ Substitute your own model paths into `<ORIGINAL-LM-PATH>` and `<HF-LM-PATH>`.
+
 ## Surprisal estimation on psycholinguistic corpora
 
-[LLM Surprisal](https://github.com/byungdoh/llm_surprisal)
+1. Clone the [llm_surprisal](https://github.com/byungdoh/llm_surprisal) repository, and copy the trained LM (in Hugging Face format) into a subdirectory.
+
+2. Run `get_llm_surprisal.py` on psycholinguistic stimuli:
+```
+python get_llm_surprisal.py <STIMULI> <HF-LM-PATH> word > <STIMULI>.surprisals
+```
+Substitute `<STIMULI>` with your own file, formatted with one sentence per line.
 
 ## Linear mixed-effects regression
 
-[Modelblocks](https://github.com/modelblocks/modelblocks-release)
+Various tools for mixed-effects regression are available in the [Modelblocks](https://github.com/modelblocks/modelblocks-release) repository, with documentation [here](https://www.asc.ohio-state.edu/schuler.77/overview-mb.pdf).
