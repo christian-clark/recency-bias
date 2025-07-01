@@ -3,6 +3,18 @@ Code and instructions for replicating experiments from ["Linear Recency Bias Dur
 
 Feel free to contact [Christian Clark](mailto:clark.3664@osu.edu) with any questions.
 
+## Hugging Face setup
+
+1. Install an editable version of [Transformers](https://github.com/huggingface/transformers), and check out the relevant commit:
+```
+git clone https://github.com/huggingface/transformers
+cd transformers
+git checkout d0acc953
+pip install -e .
+```
+
+2. Copy the files under the `transformers/` directory within `recency-bias` into the relevant locations in the Transformers repo. This will enable use of ALiBi or de Varda and Marelli (2024) bias in Hugging Face–style models.
+
 ## Pythia-based LM training
 
 The steps for tranining Pythia-style LMs are based on the [slm\_surprisal](https://github.com/byungdoh/slm_surprisal/tree/main) repository.
@@ -43,19 +55,9 @@ Example commands:
 
 ## Surprisal estimation on psycholinguistic corpora
 
-1. Install an editable version of [Transformers](https://github.com/huggingface/transformers), and check out the relevant commit:
-```
-git clone https://github.com/huggingface/transformers
-cd transformers
-git checkout d0acc953
-pip install -e .
-```
+1. Clone the [llm_surprisal](https://github.com/byungdoh/llm_surprisal) repository, and copy the trained LM (in Hugging Face format) into a subdirectory.
 
-2. Copy the files under the `transformers/` directory within `recency-bias` into the relevant locations in the Transformers repo. This will enable use of ALiBi or de Varda and Marelli (2024) bias in Hugging Face–style models.
-
-4. Clone the [llm_surprisal](https://github.com/byungdoh/llm_surprisal) repository, and copy the trained LM (in Hugging Face format) into a subdirectory.
-
-5. Run `get_llm_surprisal.py` on psycholinguistic stimuli:
+2. Run `get_llm_surprisal.py` on psycholinguistic stimuli:
 ```
 python get_llm_surprisal.py <STIMULI> <HF-LM-PATH> word > <STIMULI>.surprisals
 ```
